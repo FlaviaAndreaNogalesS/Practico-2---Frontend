@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <% if (pelicula) { %>
+            Detalles de <%= pelicula.name %>
+        <% } else { %>
+            Película no encontrada
+        <% } %>
+    </title>
+    <link rel="stylesheet" href="/css/movie.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <% if (pelicula) { %>
+            <div class="pelicula-detalle">
+                <div class="detalle-cabecera">
+                    <img src="<%= pelicula.image %>" alt="<%= pelicula.name %>">
+                    <div class="detalle-info">
+                        <h1><%= pelicula.name %></h1>
+                        <p><span class="label">Sinopsis:</span> <%= pelicula.synopsis %></p>
+                        <p><span class="label">Fecha de Lanzamiento:</span> <%= pelicula.releaseDate %></p>
+                        <p><span class="label">Calificación:</span> <%= pelicula.rating %>/10</p>
+
+                        <div class="director">
+                            <p class="label">Director:</p>
+                            <a href="/director/<%= pelicula.director.id %>" class="director-info">
+                                <img src="<%= pelicula.director.photoUrl %>" alt="<%= pelicula.director.name %>"
+                                    class="director-img-large">
+                                <span><%= pelicula.director.name %></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reparto">
+                    <h3>Reparto</h3>
+                    <div class="reparto-list">
+                        <% pelicula.actores.forEach(actor => { %>
+                            <div class="reparto-item">
+                                <a href="/actor/<%= actor.id %>">
+                                    <img src="<%= actor.photoUrl %>" alt="<%= actor.name %>">
+                                    <span><%= actor.name %></span>
+                                </a>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+
+                <div class="trailer">
+                    <h3>Trailer</h3>
+                    <iframe src="<%= pelicula.trailerUrl %>" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                <a href="/" class="btn-volver">Volver al catálogo</a>
+            </div>
+        <% } else { %>
+            <p>Lo sentimos, la película no fue encontrada.</p>
+            <a href="/" class="btn-volver">Volver al catálogo</a>
+        <% } %>
+    </div>
+</body>
+
+</html>

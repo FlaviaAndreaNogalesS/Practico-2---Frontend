@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Películas</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <% include('../partials/header') %> <!-- Revisa que la ruta del include sea correcta -->
+    <main>
+        <h1>Catálogo de Películas</h1>
+        <a href="/peliculas/nueva" class="btn-agregar">Agregar Nueva Película</a>
+
+        <div class="peliculas-list">
+            <% if (peliculas.length > 0) { %>
+                <% peliculas.forEach(pelicula => { %>
+                    <div class="pelicula-card">
+                        <img src="<%= pelicula.image %>" alt="<%= pelicula.name %>">
+                        <h2><%= pelicula.name %></h2>
+                        <p><%= pelicula.synopsis %></p>
+                        <p><strong>Calificación:</strong> <%= pelicula.rating %>/10</p>
+                        <p><strong>Fecha de Lanzamiento:</strong> <%= pelicula.releaseDate %></p>
+                        <a href="/peliculas/<%= pelicula.id %>">Ver Detalles</a>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No hay películas disponibles.</p>
+            <% } %>
+        </div>
+    </main>
+    <% include('../partials/footer') %> <!-- Revisa que la ruta del include sea correcta -->
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Nueva Película</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1>Agregar Nueva Película</h1>
+        <form action="/peliculas" method="POST" class="form-pelicula">
+            <div class="form-group">
+                <label for="name">Nombre de la Película:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="synopsis">Sinopsis:</label>
+                <textarea id="synopsis" name="synopsis" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="image">URL de la Imagen:</label>
+                <input type="text" id="image" name="image" required>
+            </div>
+
+            <div class="form-group">
+                <label for="releaseDate">Fecha de Lanzamiento:</label>
+                <input type="date" id="releaseDate" name="releaseDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="rating">Calificación (1-10):</label>
+                <input type="number" step="0.1" id="rating" name="rating" required>
+            </div>
+
+            <div class="form-group">
+                <label for="trailerUrl">URL del Trailer (YouTube):</label>
+                <input type="text" id="trailerUrl" name="trailerUrl" required>
+            </div>
+
+            <div class="form-group">
+                <label for="directorId">Director:</label>
+                <select id="directorId" name="directorId" required>
+                    <% directores.forEach(director => { %>
+                        <option value="<%= director.id %>"><%= director.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="actors">Actores (Selecciona múltiples):</label>
+                <select id="actors" name="actors" multiple required>
+                    <% actores.forEach(actor => { %>
+                        <option value="<%= actor.id %>"><%= actor.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <button type="submit" class="btn-guardar">Guardar Película</button>
+        </form>
+    </div>

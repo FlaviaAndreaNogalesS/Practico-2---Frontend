@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas con <%= actorName %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1>Películas con <%= actorName %></h1>
+        <div class="peliculas-list">
+            <% if (peliculas.length > 0) { %>
+                <% peliculas.forEach(pelicula => { %>
+                    <div class="pelicula-card">
+                        <img src="<%= pelicula.image %>" alt="<%= pelicula.name %>">
+                        <h2><%= pelicula.name %></h2>
+                        <p><%= pelicula.synopsis %></p>
+                        <p><strong>Calificación:</strong> <%= pelicula.rating %>/10</p>
+                        <a href="/peliculas/<%= pelicula.id %>">Ver Detalles</a>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No hay películas disponibles para este actor.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
